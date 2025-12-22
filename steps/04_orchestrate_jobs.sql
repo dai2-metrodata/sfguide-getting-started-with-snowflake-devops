@@ -1,5 +1,6 @@
 use role accountadmin;
-use schema quickstart_prod.gold;
+use schema quickstart_{{environment}}.gold;
+
 
 ALTER ACCOUNT SET CORTEX_ENABLED_CROSS_REGION = 'AWS_US';
 
@@ -18,7 +19,8 @@ create or alter table vacation_spots (
   , aquarium_cnt int
   , zoo_cnt int
   , korean_restaurant_cnt int
-) data_retention_time_in_days = 1;
+) data_retention_time_in_days = {{retention_time}};
+
 
 
 -- task to merge pipeline results into target table
